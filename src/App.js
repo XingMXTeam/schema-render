@@ -1,27 +1,32 @@
 import './App.css';
-import Container from './components/MainPage';
+import MainPage from './components/MainPage';
 import ComponentsMap from './components/ComponentsMap';
 import layoutStore from './components/LayoutStore';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const schema = {
   modules: [
     {
       uiType: 'Input',
       value: '111',
+      componentKey: 'uniqueId',
     },
   ],
 };
 
-function App() {
-  useEffect(() => {
+class App extends React.Component {
+  constructor(props) {
+    super(props);
     layoutStore.setData(schema);
-  }, [layoutStore]);
-  return (
-    <div className="App">
-      <Container layoutStore={layoutStore} schema={layoutStore.schema} componentsMap={ComponentsMap} />
-    </div>
-  );
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <MainPage layoutStore={layoutStore} schema={layoutStore.schema} componentsMap={ComponentsMap} />
+      </div>
+    );
+  }
 }
 
 export default App;

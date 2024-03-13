@@ -24,6 +24,7 @@ class MapNode {
     });
     this.nodeMap.set('root', this.root);
     this.merge(schema);
+    console.log('this.root1', this.root);
   }
 
   /**
@@ -35,9 +36,13 @@ class MapNode {
    */
   mergeNode(newData, startComponentKey, isRecursive) {
     if (!isRecursive) {
-      return this.updateNode(newData, startComponentKey);
+      const temp = this.updateNode(newData, startComponentKey);
+      console.log('this.root22', this.root);
+      // this.nodeMap.set(newData.componentKey, temp);
+      return temp;
     }
-    return this.mergeNodeRecursive(newData, startComponentKey);
+    const res = this.mergeNodeRecursive(newData, startComponentKey);
+    return res;
   }
 
   mergeNodeRecursive(newData, startComponentKey, depth = 0) {
@@ -79,7 +84,9 @@ class MapNode {
    */
   updateNode(newData, componentKey) {
     const existedNode = this.nodeMap.get(componentKey);
-    return existedNode ? Object.assign(existedNode, { ...newData, componentKey }) : null;
+    const res = existedNode ? Object.assign(existedNode, { ...newData, componentKey }) : null;
+    console.log('sss', this.nodeMap.get(componentKey));
+    return res;
   }
 
   /**

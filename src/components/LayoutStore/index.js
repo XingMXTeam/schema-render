@@ -1,6 +1,6 @@
 import { action } from 'mobx';
 import MapNode from '../../utils/map-node';
-import { v4 } from 'uuid';
+// import { v4 } from 'uuid';
 import EventsHoc from '../../hooks/events-hoc';
 import componentsMap from '../ComponentsMap';
 import React from 'react';
@@ -13,14 +13,13 @@ class LayoutStore {
   }
 
   renderComponent(itemData) {
-    itemData.componentKey = v4();
-
     const getTargetComponentBySchema = () => {
       const BaseComponent = componentsMap[itemData.uiType].default ?? componentsMap[itemData.uiType];
-      return BaseComponent ? EventsHoc(BaseComponent) : null``;
+      return BaseComponent ? EventsHoc(BaseComponent) : null;
     };
 
     const TargetComponent = getTargetComponentBySchema(componentsMap);
+    console.log('itemData', itemData);
     return <TargetComponent itemData={itemData} layoutStore={this} />;
   }
 
