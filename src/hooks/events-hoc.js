@@ -1,11 +1,14 @@
-import { observer } from 'mobx-react';
+// import { observer } from 'mobx-react';
 import React from 'react';
 
 export default function EventsHoc(props) {
   const { Component, onChange: onCustomChange, layoutStore } = props;
 
-  return observer((props) => {
-    const { itemData } = props;
+  // eslint-disable-next-line react/display-name
+  return (props) => {
+    // eslint-disable-next-line react/prop-types
+    const { itemData = {} } = props;
+    // eslint-disable-next-line react/prop-types
     const { value: oldValue } = itemData;
 
     const onChange = (newValue) => {
@@ -14,6 +17,6 @@ export default function EventsHoc(props) {
       layoutStore.changeElementData({ value: newValue }, itemData);
     };
 
-    return <Component onChange={onChange} {...props} />;
-  });
+    return <Component onChange={onChange} {...itemData} />;
+  };
 }

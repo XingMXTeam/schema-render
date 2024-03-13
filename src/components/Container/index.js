@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { PropTypes } from 'mobx-react';
+import PropTypes from 'prop-types';
 
 function Container({ layoutStore, schema, componentsMap }) {
   const [children, setChildren] = useState();
@@ -9,6 +9,8 @@ function Container({ layoutStore, schema, componentsMap }) {
     setChildren(elements);
   }, []);
 
+  if (!children) return null;
+  console.log('children', children);
   return <>{children}</>;
 }
 

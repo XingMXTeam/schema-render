@@ -3,9 +3,9 @@ import generateComponentKey from '../../utils/generate-component-key';
 import React from 'react';
 
 const getComponentBySchema = (layoutStore, schema, componentsMap) => {
-  const TargetComponent = componentsMap[schema.uiType].default ?? componentsMap[schema.uiType];
-  if (TargetComponent) {
-    return EventsHoc({ TargetComponent, layoutStore });
+  const Component = componentsMap[schema.uiType].default ?? componentsMap[schema.uiType];
+  if (Component) {
+    return EventsHoc({ Component, layoutStore });
   }
   return null;
 };
