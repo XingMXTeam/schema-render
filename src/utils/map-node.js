@@ -5,8 +5,13 @@ class MapNode {
   @observable nodeMap;
 
   constructor() {
-    this.root = {};
-    this.nodeMap = new Map([['root', this.root]]);
+    // 默认节点
+    this.root = {
+      success: true,
+      status: 200,
+      modules: [],
+    };
+    this.nodeMap = new Map([['root', this.root]]); //hash+树
   }
 
   /**
@@ -35,18 +40,33 @@ class MapNode {
     return this.mergeNodeRecursive(newData, startComponentKey);
   }
 
-  mergeNodeRecursive(newData, startComponentKey) {
-    let currData = this.nodeMap.get(startComponentKey);
+  mergeNodeRecursive(newData, startComponentKey, depth = 0) {
+    let currData = this.nodeMap.get(newData.componentKey);
+    const isComponentUpdate =
+      newData.componentKey === startComponentKey || (currData && currData.componentKey === newData.componentKey);
+    // 节点不存在，创建节点
     if (!currData) {
       currData = this.nodeMap.set(newData.componentKey, {}).get(newData.componentKey);
-      this.mergeNodeProps(newData, currData);
+      this.mergeNodeProps(newData, currData, startComponentKey, depth);
+    }
+    // 更新节点
+    else if (isComponentUpdate) {
+      currData = this.mergeNodeProps(newData, currData, startComponentKey, depth);
     }
     return currData;
   }
 
-  mergeNodeProps(newData, currData) {
-    Object.entries(newData).forEach((key, value) => {
-      currData[key] = value;
+  mergeNodeProps(newData, currData, startComponentKey, depth) {
+    Object.entries(newData).forEach(([key, value]) => {
+      if (Array.isArray(value)) {
+        // modules情况
+        currData[key] =
+          key == 'modules'
+            ? value.map((itemData) => this.mergeNodeRecursive(itemData, startComponentKey, depth + 1))
+            : value;
+      } else {
+        currData[key] = value;
+      }
     });
     return currData;
   }
@@ -63,7 +83,7 @@ class MapNode {
   }
 
   /**
-   * 合并整个Node
+   * 树结构的入口
    * @param schema
    * @return {{}|*|{componentKey}}
    */
