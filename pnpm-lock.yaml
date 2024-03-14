@@ -14,8 +14,8 @@ specifiers:
   customize-cra: ^1.0.0
   eslint: ^8.57.0
   eslint-plugin-react: ^7.34.0
-  mobx: 5.13.0
-  mobx-react: 5.4.4
+  mobx: ^6.12.0
+  mobx-react: ^9.1.0
   moment: ^2.30.1
   prettier: ^3.2.5
   prop-types: ^15.8.1
@@ -31,8 +31,8 @@ dependencies:
   '@testing-library/jest-dom': 5.17.0
   '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
   '@testing-library/user-event': 13.5.0
-  mobx: 5.13.0
-  mobx-react: 5.4.4_mobx@5.13.0+react@18.2.0
+  mobx: 6.12.0
+  mobx-react: 9.1.0_tew2cxsn3epqvaabosbtllz64e
   moment: 2.30.1
   prop-types: 15.8.1
   react: 18.2.0
@@ -6674,20 +6674,46 @@ packages:
     dependencies:
       minimist: 1.2.8
 
-  /mobx-react/5.4.4_mobx@5.13.0+react@18.2.0:
-    resolution: {integrity: sha512-2mTzpyEjVB/RGk2i6KbcmP4HWcAUFox5ZRCrGvSyz49w20I4C4qql63grPpYrS9E9GKwgydBHQlA4y665LuRCQ==}
+  /mobx-react-lite/4.0.6_tew2cxsn3epqvaabosbtllz64e:
+    resolution: {integrity: sha512-0rOE0KDMwV9CzsstYC86ZxxrUpKLGBN0/T3WpKZibLnJcukdb9HVL8VKHoDxaBPbInLZ5azPKUod4mXTsi+u+A==}
     peerDependencies:
-      mobx: ^4.0.0 || ^5.0.0
-      react: ^0.13.0 || ^0.14.0 || ^15.0.0 || ^16.0.0
+      mobx: ^6.9.0
+      react: ^16.8.0 || ^17 || ^18
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
     dependencies:
-      hoist-non-react-statics: 3.3.2
-      mobx: 5.13.0
+      mobx: 6.12.0
       react: 18.2.0
-      react-lifecycles-compat: 3.0.4
+      react-dom: 18.2.0_react@18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
 
-  /mobx/5.13.0:
-    resolution: {integrity: sha512-eSAntMSMNj0PFL705rgv+aB/z1RjNqDnFEpBe18yQVreXTWiVgIrmBUXzjnJfuba+eo4eAk6zi+/gXQkSUea8A==}
+  /mobx-react/9.1.0_tew2cxsn3epqvaabosbtllz64e:
+    resolution: {integrity: sha512-DeDRTYw4AlgHw8xEXtiZdKKEnp+c5/jeUgTbTQXEqnAzfkrgYRWP3p3Nv3Whc2CEcM/mDycbDWGjxKokQdlffg==}
+    peerDependencies:
+      mobx: ^6.9.0
+      react: ^16.8.0 || ^17 || ^18
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      mobx: 6.12.0
+      mobx-react-lite: 4.0.6_tew2cxsn3epqvaabosbtllz64e
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /mobx/6.12.0:
+    resolution: {integrity: sha512-Mn6CN6meXEnMa0a5u6a5+RKrqRedHBhZGd15AWLk9O6uFY4KYHzImdt8JI8WODo1bjTSRnwXhJox+FCUZhCKCQ==}
     dev: false
 
   /moment/2.30.1:
@@ -9258,6 +9284,14 @@ packages:
     dependencies:
       querystringify: 2.2.0
       requires-port: 1.0.0
+
+  /use-sync-external-store/1.2.0_react@18.2.0:
+    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /util-deprecate/1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}

@@ -19,7 +19,7 @@ class LayoutStore {
     };
 
     const TargetComponent = getTargetComponentBySchema(componentsMap);
-    console.log('itemData', itemData);
+    // console.log('itemData', itemData);
     return <TargetComponent itemData={itemData} layoutStore={this} />;
   }
 

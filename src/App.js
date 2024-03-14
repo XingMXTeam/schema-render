@@ -23,7 +23,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <MainPage layoutStore={layoutStore} schema={layoutStore.schema} componentsMap={ComponentsMap} />
+        <MainPage layoutStore={layoutStore} componentsMap={ComponentsMap} />
       </div>
     );
   }

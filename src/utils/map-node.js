@@ -6,12 +6,12 @@ class MapNode {
 
   constructor() {
     // 默认节点
-    this.root = {
+    this.root = observable({
       success: true,
       status: 200,
       modules: [],
-    };
-    this.nodeMap = new Map([['root', this.root]]); //hash+树
+    });
+    this.nodeMap = observable.map([['root', this.root]]); //hash+树
   }
 
   /**
@@ -38,7 +38,6 @@ class MapNode {
     if (!isRecursive) {
       const temp = this.updateNode(newData, startComponentKey);
       console.log('this.root22', this.root);
-      // this.nodeMap.set(newData.componentKey, temp);
       return temp;
     }
     const res = this.mergeNodeRecursive(newData, startComponentKey);
@@ -85,7 +84,6 @@ class MapNode {
   updateNode(newData, componentKey) {
     const existedNode = this.nodeMap.get(componentKey);
     const res = existedNode ? Object.assign(existedNode, { ...newData, componentKey }) : null;
-    console.log('sss', this.nodeMap.get(componentKey));
     return res;
   }
 
